@@ -20,4 +20,4 @@ jobs:
           timestamp=$(date '+%Y-%m-%d %H:%M:%S IST')
           git add -A
           git commit --allow-empty -m "Daily backup - $timestamp" || echo "No changes to commit"
-          git push origin UAT
+          git push origin Dev
