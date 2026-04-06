@@ -1,0 +1,23 @@
+name: Daily Backup
+
+on:
+  schedule:
+    - cron: '30 22 * * *'  # 4:00 AM IST (10:30 PM UTC previous day)
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: UAT
+
+      - name: Create Daily Backup Commit
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Backup Bot'
+          timestamp=$(date '+%Y-%m-%d %H:%M:%S IST')
+          git add -A
+          git commit --allow-empty -m "Daily backup - $timestamp" || echo "No changes to commit"
+          git push origin UAT
