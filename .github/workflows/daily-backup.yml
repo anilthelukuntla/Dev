@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: UAT
+          ref: Dev
 
       - name: Create Daily Backup Commit
         run: |
